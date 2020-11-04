@@ -42,7 +42,7 @@ tar xjf ptxdist-2013.07.1.tar.bz2 && \
 cd ptxdist-2013.07.1 && \
 ./configure && make && sudo make install
 
-RUN sudo apt-get -y install git curl libncurses5 lib32z1 libqtgui4:i386 libusb-0.1:i386 libelf1:i386 libicu48:i386 vim
+RUN sudo apt-get -y install git curl libncurses5 lib32z1 libqtgui4:i386 libusb-0.1:i386 libelf1:i386 libicu48:i386 vim bc
 
 RUN sudo mkdir -p /tools
 WORKDIR /tools
@@ -61,5 +61,6 @@ RUN sudo ldconfig
 
 RUN sudo rm -rf /install && sudo rm -rf /var/lib/apt/lists/*
 
+WORKDIR /work
 ENV PATH "$PATH:/usr/local/bin/ptxdist-2013.07.1:/tools/eACommander:/tools/JLink:/tools/profiler"
 CMD ["bash"]
