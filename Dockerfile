@@ -1,8 +1,7 @@
-#FROM ludvighz/efm32gg-devkit:codesourcery
 FROM ubuntu:12.04
 RUN apt-get update
-#RUN cat /etc/apt/sources.list
-#RUN apt-get build-dep texinfo
+
+
 RUN apt-get install -y fakeroot build-essential expect dialog gawk flex bison gettext libncurses-dev automake autoconf libtool pkg-config git python-dev sudo wget
 WORKDIR /tmp/
 RUN cd /tmp && wget https://ftp.gnu.org/gnu/texinfo/texinfo-4.13a.tar.gz && mkdir texinfo && tar -xf texinfo-4.13a.tar.gz -C texinfo && \ 
@@ -23,7 +22,7 @@ RUN sudo mkdir /install && sudo chmod 777 -R /install
 WORKDIR /install
 RUN cd /install && 	wget http://www.pengutronix.de/oselas/toolchain/download/OSELAS.Toolchain-2012.12.0.tar.bz2 && \
 wget http://www.ptxdist.org/software/ptxdist/download/ptxdist-2012.12.0.tar.bz2
-#RUN cd /install && tar xjf ptxdist-2012.12.0.tar.bz2 && cd ptxdist-2012.12.0 && ./configure  && make && make install
+
 RUN cd /install && git clone git://git.pengutronix.de/git/ptxdist.git && cd ptxdist && git checkout ptxdist-2012.12.0 && git cherry-pick 2a89985 && \
 ./autogen.sh && ./configure  && make && sudo make install
 
